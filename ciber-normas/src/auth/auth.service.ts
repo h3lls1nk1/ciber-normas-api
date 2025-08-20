@@ -40,4 +40,25 @@ export class AuthService {
             user
         }
     }
+
+    async validateLinkedinUser (profile: any) {
+        let user = await this.usersService.findByEmail(profile.email);
+
+        if (!user) {
+            user = await this.usersService.create({
+                email: profile.email,
+                firstName: profile.firstName,
+                lastName: profile.lastName,
+                picture: profile.picture,
+                username: profile.email.split('@')[0],
+            });
+        }
+
+        const payload = { sub: user.id, email: user.email };
+
+        return {
+            access_token: this.jwtService.sign(payload),
+            user
+        }
+    }
 }

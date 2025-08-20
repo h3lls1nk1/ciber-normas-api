@@ -33,4 +33,19 @@ export class AuthController {
             user: req.user,
         }
     }
+
+    @Get('linkedin')
+    @UseGuards(PassportAuthGuard('linkedin'))
+    async linkedinAuth(@Req() req) {
+
+    }
+
+    @Get('linkedin/callback') 
+    @UseGuards(PassportAuthGuard('linkedin'))
+    async linkedinAuthRedirect(@Req() req) {
+        return {
+            message: 'Usuario autenticado con LinkedIn',
+            user: req.user,
+        };
+    }
 }
