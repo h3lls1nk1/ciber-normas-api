@@ -12,9 +12,14 @@ async function bootstrap() {
     .addTag('ciber-normas')
     .build();
 
+  app.enableCors({
+    origin: '*',
+  });
+
   const documentFactory = () => SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, documentFactory());
 
   await app.listen(process.env.PORT ?? 3000);
 }
+
 bootstrap();

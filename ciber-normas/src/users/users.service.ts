@@ -18,8 +18,18 @@ export class UsersService {
         return this.userRepository.findOneBy({ id });
     }
 
+    findByEmail(email: string): Promise<User | null> {
+        return this.userRepository.findOneBy({ email });
+    }
+
     findByUsername(username: string): Promise<User | null> {
-        return this.userRepository.findOneBy({ username })
+        return this.userRepository.findOneBy({ username });
+    }
+
+    create(data: Partial<User>) {
+        const user = this.userRepository.create(data);
+
+        return this.userRepository.save(user);
     }
 
     async remove(id: number): Promise<void> {

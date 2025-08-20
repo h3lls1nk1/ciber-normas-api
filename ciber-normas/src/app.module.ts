@@ -8,6 +8,9 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { User } from './users/user.entity';
+import { RegulationsService } from './regulations/regulations.service';
+import { RegulationsModule } from './regulations/regulations.module';
+import { RegulationsController } from './regulations/regulations.controller';
 
 @Module({
   imports: [
@@ -24,6 +27,7 @@ import { User } from './users/user.entity';
       autoLoadEntities: true,
       synchronize: true,
     }),
+    RegulationsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
