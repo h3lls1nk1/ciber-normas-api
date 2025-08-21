@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common';
 import { RegulationsService } from './regulations.service';
-import { Regulation } from './regulation.entity';
+import { Regulation } from './entities/regulation.entity';
 
 @Controller('regulations')
 export class RegulationsController {
